@@ -5,6 +5,7 @@ namespace Irisit\AuthzLdap;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Irisit\AuthzLdap\Console\Commands\ParsePermissions;
+use Irisit\AuthzLdap\Console\Commands\LdapImport;
 use Irisit\AuthzLdap\Http\Validators\HashValidator;
 
 class AuthzServiceProvider extends ServiceProvider
@@ -55,6 +56,8 @@ class AuthzServiceProvider extends ServiceProvider
         $this->app->alias('Html', 'Collective\Html\HtmlFacade');
 
         $this->commands([ParsePermissions::class]);
+
+        $this->commands([LdapImport::class]);
     }
 
     private function bootValidator()

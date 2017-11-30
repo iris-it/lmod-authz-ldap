@@ -61,12 +61,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | LDAP Command to call for getting users
+    | LDAP Command
     |--------------------------------------------------------------------------
     |
     | in order to retrieve users
     |
     */
 
-    'ldap_artisan_command' => 'authz:ldap_import'
+    'ldap_artisan_command' => 'authz:ldap_import',
+
+    /*
+    |--------------------------------------------------------------------------
+    | LDAP Filter
+    |--------------------------------------------------------------------------
+    |
+    | in order to retrieve users not all the users
+    |
+    */
+
+    'ldap_filters' => '(&(cn=*))'
+
 ];
