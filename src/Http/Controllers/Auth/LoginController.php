@@ -46,4 +46,13 @@ class LoginController extends Controller
     {
         return view('authz::public.login');
     }
+
+    /**
+     * @override
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
 }

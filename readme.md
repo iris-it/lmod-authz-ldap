@@ -59,12 +59,13 @@ Replace all the in the `App\User::class`
 
 namespace App;
 
+use Adldap\Laravel\Traits\HasLdapUser;
 use Illuminate\Notifications\Notifiable;
 use Irisit\AuthzLdap\Models\BaseUser as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasLdapUser;
 
     /**
      * The attributes that are mass assignable.

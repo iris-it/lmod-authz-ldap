@@ -73,7 +73,7 @@ class UsersController extends Controller
     {
         try {
             define('STDOUT', fopen('php://stdout', 'w'));
-            Artisan::call('parse:permissions');
+            Artisan::call(config('irisit_authz.ldap_artisan_command'));
         } catch (Exception $e) {
             Flash::error(__('Ldap sync failed'));
         }

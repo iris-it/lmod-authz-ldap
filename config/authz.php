@@ -59,4 +59,14 @@ return [
 
     'load_routes' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | LDAP Command to call for getting users
+    |--------------------------------------------------------------------------
+    |
+    | in order to retrieve users
+    |
+    */
+
+    'ldap_artisan_command' => 'authz:ldap_import'
 ];
