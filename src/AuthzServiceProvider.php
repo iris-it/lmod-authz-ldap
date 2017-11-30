@@ -56,8 +56,6 @@ class AuthzServiceProvider extends ServiceProvider
         $this->app->alias('Html', 'Collective\Html\HtmlFacade');
 
         $this->commands([ParsePermissions::class]);
-
-        $this->commands([LdapImport::class]);
     }
 
     private function bootValidator()
