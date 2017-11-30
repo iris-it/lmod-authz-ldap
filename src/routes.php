@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Irisit\AuthzLdap\Http\Controllers', 'middleware' =
             Route::get('{id}/delete', 'UsersController@delete')->name('authz.admin_delete_users');
             Route::delete('{id}/destroy', 'UsersController@destroy')->name('authz.admin_destroy_users');
 
-            Route::post('trigger/ldap', 'PermissionsController@triggerLdapSync')->name('authz.admin_trigger_ldap_sync');
+            Route::post('trigger/ldap', 'UsersController@triggerLdapSync')->name('authz.admin_trigger_ldap_sync');
         });
 
 
