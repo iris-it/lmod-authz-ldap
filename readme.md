@@ -148,3 +148,42 @@ protected function unauthenticated($request, AuthenticationException $exception)
 And run `php artisan vendor:publish --provider="Irisit\AuthzLdap\AuthzServiceProvider"` to get the configuration file and the seeder file 
 
 For the seeder add `$this->call(RoleTableSeeder::class);` to the `/database/seeders/DatabaseSeeder.php`
+
+_______________________________
+
+In order to use the filters you have to create a scope 
+
+```
+<?php
+
+namespace App\Scopes;
+
+use Adldap\Query\Builder;
+use Adldap\Laravel\Scopes\ScopeInterface;
+
+class FilterScope implements ScopeInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function apply(Builder $builder)
+    {
+        $builder->rawFilter(config('irisit_authz.ldap_filters'));
+    }
+}
+
+```
+
+And add the scope to `adldap_auth.php` config file
+
+```
+    'scopes' => [
+
+        // Only allows users with a user principal name to authenticate.
+
+        App\Scopes\SamAccountNameScope::class,
+
+        App\Scopes\FilterScope::class, <---
+
+    ],
+```
