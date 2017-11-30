@@ -8,7 +8,7 @@
 
     <div>
         <div class="form-group form-group-default {{(!$errors->has('username') ?: 'has-error')}}">
-            {!! Form::label('username', __('Email')) !!}
+            {!! Form::label('username', __('Username')) !!}
             <div class="controls">
                 {!! Form::text('username', null, ['placeholder' => __('Username'), 'class' =>($errors->has('username') ? 'form-control error' : 'form-control')]) !!}
             </div>
