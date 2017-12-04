@@ -2,6 +2,8 @@
 
 namespace Irisit\AuthzLdap\Http\Controllers\Admin;
 
+use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Irisit\AuthzLdap\Http\Requests\Admin\AdminRolePermissionRequest;
 use Irisit\AuthzLdap\Http\Requests\Admin\AdminRoleRequest;
 use Irisit\AuthzLdap\Http\Controllers\Controller;
@@ -96,6 +98,19 @@ class RolesController extends Controller
         } else {
             Flash::error(__('Update role failed'));
         }
+
+        return redirect(route('authz.admin_index_roles'));
+    }
+
+    public function triggerRolesSync()
+    {
+        try {
+            define('STDOUT', fopen('php://stdout', 'w'));
+            Artisan::call('import:ldap_groups');
+        } catch (Exception $e) {
+            Flash::error(__('Scan roles failed'));
+        }
+        Flash::success(__('Scan roles success'));
 
         return redirect(route('authz.admin_index_roles'));
     }

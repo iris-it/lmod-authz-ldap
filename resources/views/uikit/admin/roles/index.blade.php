@@ -13,6 +13,15 @@
                     <a href="{{route('authz.admin_create_roles')}}" uk-icon="icon: plus-circle"></a>
                 @endcan
 
+                @can('permission::admin-trigger_roles_sync')
+                    <a href="{{route('authz.admin_trigger_roles_sync')}}" title="Ldap sync" onclick="event.preventDefault(); document.getElementById('scan-perm').submit();">
+                        <span uk-icon="icon: refresh"></span>
+                        <form id="scan-perm" action="{{ route('authz.admin_trigger_roles_sync') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </a>
+                @endcan
+
             </div>
 
             <table class="uk-table uk-table-striped">

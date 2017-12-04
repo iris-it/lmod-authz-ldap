@@ -29,7 +29,7 @@ class BaseUser extends Model implements AuthenticatableContract, AuthorizableCon
      */
     public function roles()
     {
-        return $this->belongstoMany('Irisit\AuthzLdap\Models\Role');
+        return $this->belongstoMany('Irisit\AuthzLdap\Models\Role', 'role_user', 'user_id', 'role_id');
     }
 
     /**

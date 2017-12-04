@@ -47,6 +47,9 @@ Route::group(['namespace' => 'Irisit\AuthzLdap\Http\Controllers', 'middleware' =
             Route::delete('{id}/destroy', 'RolesController@destroy')->name('authz.admin_destroy_roles');
 
             Route::put('{id}/sync/permissions', 'RolesController@syncPermissions')->name('authz.admin_sync_roles_permissions');
+
+            Route::post('trigger/roles', 'RolesController@triggerRolesSync')->name('authz.admin_trigger_roles_sync');
+
         });
 
 

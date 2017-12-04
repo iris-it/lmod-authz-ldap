@@ -36,7 +36,7 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongstoMany('Irisit\AuthzLdap\Models\BaseUser');
+        return $this->belongstoMany('Irisit\AuthzLdap\Models\BaseUser','role_user', 'role_id','user_id');
     }
 
     /**

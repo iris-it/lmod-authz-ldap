@@ -79,9 +79,10 @@ class ImportAndMapLdapGroups extends Command
             // Ldap Groups
             $groups = $user->getGroups();
 
+            $is_admin = $eloquent_user->hasRole('admin');
+
             // Cleanup
             $eloquent_user->roles()->detach();
-
 
             foreach ($groups as $group) {
 
@@ -91,6 +92,11 @@ class ImportAndMapLdapGroups extends Command
 
                 $eloquent_user->roles()->save($role);
 
+            }
+
+            if($is_admin){
+                $role = Role::findOrFail(1);
+                $eloquent_user->roles()->save($role);
             }
 
             $this->displayLdapGroups($eloquent_user->username, $groups);

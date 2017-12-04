@@ -10,6 +10,15 @@
         </a>
     @endcan
 
+    @can('permission::admin-trigger_roles_sync')
+        <a class="pull-right" href="{{route('authz.admin_trigger_roles_sync')}}" onclick="event.preventDefault(); document.getElementById('scan-perm').submit();">
+            {{__('Trigger roles sync')}} <i class="fa fa-recycle"></i>
+            <form id="scan-perm" action="{{ route('authz.admin_trigger_roles_sync') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </a>
+    @endcan
+
     <table class="table table-responsive">
         <thead>
         <tr>
