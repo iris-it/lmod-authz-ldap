@@ -16,7 +16,7 @@ class ImportAndMapLdapGroups extends Command
      *
      * @var string
      */
-    protected $signature = 'import:ldap_groups';
+    protected $signature = 'lmod_authz:import_groups_ldap';
 
     /**
      * The console command description.

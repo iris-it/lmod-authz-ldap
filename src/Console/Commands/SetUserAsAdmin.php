@@ -15,7 +15,7 @@ class SetUserAsAdmin extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:promote';
+    protected $signature = 'lmod_authz:promote_user_admin';
 
     /**
      * The console command description.

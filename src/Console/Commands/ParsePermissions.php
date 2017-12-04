@@ -14,7 +14,7 @@ class ParsePermissions extends Command
      *
      * @var string
      */
-    protected $signature = 'parse:permissions';
+    protected $signature = 'lmod_authz:parse_permissions';
 
     /**
      * The console command description.
