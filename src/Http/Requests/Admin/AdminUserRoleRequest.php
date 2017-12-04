@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminUserRequest extends FormRequest
+class AdminUserRoleRequest extends FormRequest
 {
 
     /**
@@ -23,7 +23,7 @@ class AdminUserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            
+            'roles.*' => 'integer',
         ];
 
         return $rules;

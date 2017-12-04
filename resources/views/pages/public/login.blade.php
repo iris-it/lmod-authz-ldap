@@ -34,6 +34,15 @@
         @endif
     </div>
 
+    <div class="row">
+        <div class="col-md-12 no-padding sm-p-l-10">
+            <div class="checkbox">
+                {!! Form::checkbox('remember', 1, null, ['id' => 'remember']) !!}
+                <label for="remember">{{ __('Remember me ?') }}</label>
+            </div>
+        </div>
+    </div>
+
     {!! Form::submit(__('Submit'), ['class' => 'btn btn-primary btn-cons m-t-10', 'name' => 'submit-login']) !!}
 
     {!! Form::close() !!}

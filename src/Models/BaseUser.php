@@ -25,36 +25,38 @@ class BaseUser extends Model implements AuthenticatableContract, AuthorizableCon
     /**
      * An user has many roles
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\belongstoMany
      */
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo('Irisit\AuthzLdap\Models\Role');
+        return $this->belongstoMany('Irisit\AuthzLdap\Models\Role');
     }
 
     /**
      * this assign roles to an user (obvious isn'it ?)
      *
      * @param $role
-     * @return bool
+     * @return Model
      */
-    public function assignRole($role)
+    public function assignRole(Role $role)
     {
-        $role = Role::where('name', $role)->firstOrFail();
-
-        return $this->role()->associate($role)->save();
+        return $this->roles()->save($role);
     }
 
     /**
      * check if user has role
      *
-     * @param $role
+     * @param $name
      * @return bool
      */
-    public function hasRole($role)
+    public function hasRole($name)
     {
-        if (is_string($role)) {
-            return $this->role->name == $role;
+        if (is_string($name)) {
+            foreach ($this->roles as $role) {
+                if ($role->name == $name) {
+                    return true;
+                }
+            }
         }
 
         return false;
@@ -63,14 +65,14 @@ class BaseUser extends Model implements AuthenticatableContract, AuthorizableCon
     /**
      * check if user has role
      *
-     * @param $permission
+     * @param $name
      * @return bool
      */
-    public function hasPermission($permission)
+    public function hasPermission($name)
     {
-        if (is_string($permission)) {
-            foreach ($this->role->permissions as $permissionRole) {
-                if ($permissionRole->name == $permission) {
+        if (is_string($name)) {
+            foreach ($this->role->permissions as $permission) {
+                if ($permission->name == $name) {
                     return true;
                 }
             }

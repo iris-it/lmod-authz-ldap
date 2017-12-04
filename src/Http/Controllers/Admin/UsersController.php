@@ -5,8 +5,8 @@ namespace Irisit\AuthzLdap\Http\Controllers\Admin;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Artisan;
+use Irisit\AuthzLdap\Http\Requests\Admin\AdminUserRoleRequest;
 use Irisit\AuthzLdap\Models\Role;
-use Irisit\AuthzLdap\Http\Requests\Admin\AdminUserRequest;
 
 use Irisit\AuthzLdap\Notifications\NewAccount;
 use Irisit\AuthzLdap\Services\PasswordGenService;
@@ -63,6 +63,26 @@ class UsersController extends Controller
             Flash::success(__('Delete user success'));
         } else {
             Flash::error(__('Delete user failed'));
+        }
+
+        return redirect(route('authz.admin_index_users'));
+
+    }
+
+    public function syncRoles(AdminUserRoleRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $data = $request->all();
+
+        if (!$request->has("roles")) {
+            $data["roles"] = [];
+        }
+
+        if ($user->roles()->sync($data["roles"])) {
+            Flash::success(__('Update user success'));
+        } else {
+            Flash::error(__('Update user failed'));
         }
 
         return redirect(route('authz.admin_index_users'));

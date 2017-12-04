@@ -32,7 +32,7 @@ class PermissionsServiceProvider extends ServiceProvider
 
         foreach ($this->getPermissions() as $permission) {
             $gate->define($permission->name, function ($user) use ($permission) {
-                if ($user->role->name == "admin") {
+                if ($user->hasRole('admin')) {
                     return true;
                 }
 

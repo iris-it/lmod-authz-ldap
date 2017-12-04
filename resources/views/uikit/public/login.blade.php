@@ -41,6 +41,13 @@
 
             </div>
 
+            <div class="uk-margin">
+                <label>
+                    {!! Form::checkbox('remember', 1, null, ['class' => 'uk-checkbox']) !!}
+                    {{ __('Remember me ?') }}
+                </label>
+            </div>
+
             {!! Form::submit(__('Submit'), ['class' => 'uk-button uk-button-primary', 'name' => 'submit-login']) !!}
 
             {!! Form::close() !!}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateRelationUsersRoles extends Migration
@@ -12,9 +13,26 @@ class CreateRelationUsersRoles extends Migration
      */
     public function up()
     {
-        Schema::table('users', function ($table) {
-            $table->integer('role_id')->unsigned()->nullable()->index();
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null');
+        Schema::create('role_user', function (Blueprint $table) {
+
+            $table->integer('role_id')->unsigned();
+
+            $table->integer('user_id')->unsigned();
+
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->primary(['role_id', 'user_id']);
+
         });
     }
 
@@ -25,9 +43,6 @@ class CreateRelationUsersRoles extends Migration
      */
     public function down()
     {
-        Schema::table('users', function ($table) {
-            $table->dropForeign('users_role_id_foreign');
-            $table->dropColumn('role_id');
-        });
+        Schema::drop('role_user');
     }
 }

@@ -32,11 +32,11 @@ class Role extends Model
     /**
      * A role has many users
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongstoMany
      */
     public function users()
     {
-        return $this->hasMany('Irisit\AuthzLdap\Models\BaseUser');
+        return $this->belongstoMany('Irisit\AuthzLdap\Models\BaseUser');
     }
 
     /**

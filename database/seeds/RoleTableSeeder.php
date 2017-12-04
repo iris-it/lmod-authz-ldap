@@ -21,18 +21,8 @@ class RoleTableSeeder extends Seeder
         $roles = [[
             'id' => '1',
             'name' => 'admin',
-            'label' => 'Administrateur',
-            'description' => 'Administrateur'
-        ], [
-            'id' => '2',
-            'name' => 'manager',
-            'label' => 'Manager',
-            'description' => 'Manager'
-        ], [
-            'id' => '3',
-            'name' => 'user',
-            'label' => 'Utilisateur',
-            'description' => 'Utilisateur'
+            'label' => 'Local - Administrateur',
+            'description' => 'Administrateur local'
         ]];
 
         foreach ($roles as $role) {
