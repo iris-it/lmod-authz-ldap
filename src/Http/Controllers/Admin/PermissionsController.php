@@ -87,7 +87,7 @@ class PermissionsController extends Controller
     {
         try {
             define('STDOUT', fopen('php://stdout', 'w'));
-            Artisan::call('parse:permissions');
+            Artisan::call('lmod_authz:parse_permissions');
         } catch (Exception $e) {
             Flash::error(__('Scan permission failed'));
         }

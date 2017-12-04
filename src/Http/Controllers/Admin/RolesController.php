@@ -106,7 +106,7 @@ class RolesController extends Controller
     {
         try {
             define('STDOUT', fopen('php://stdout', 'w'));
-            Artisan::call('import:ldap_groups');
+            Artisan::call('lmod_authz:import_groups_ldap');
         } catch (Exception $e) {
             Flash::error(__('Scan roles failed'));
         }
