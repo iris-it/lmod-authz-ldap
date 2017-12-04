@@ -149,6 +149,17 @@ And run `php artisan vendor:publish --provider="Irisit\AuthzLdap\AuthzServicePro
 
 For the seeder add `$this->call(RoleTableSeeder::class);` to the `/database/seeders/DatabaseSeeder.php`
 
+to import users : 
+`php artisan adldap:import`
+
+to get groups : 
+`php artisan lmod_authz:import_groups_ldap`
+
+to get permissions : 
+`php artisan lmod_authz:parse_permissions`
+
+to promote user as admin : 
+`php artisan lmod_authz:promote_user_admin`
 _______________________________
 
 In order to use the filters you have to create a scope 
