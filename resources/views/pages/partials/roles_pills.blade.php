@@ -1,11 +1,11 @@
 @if($role)
     @if($role->name =='admin')
-        <span class="badge badge-danger" style="width: 75px">{{str_limit($role->name, 10)}}</span>
+        <span class="badge badge-danger">{{$role->name}}</span>
     @elseif($role->name =='manager')
-        <span class="badge badge-warning" style="width: 75px">{{str_limit($role->name, 10)}}</span>
+        <span class="badge badge-warning">{{$role->name}}</span>
     @else
-        <span class="badge badge-info" style="width: 75px">{{str_limit($role->name, 10)}}</span>
+        <span class="badge badge-info">{{$role->name}}</span>
     @endif
 @else
-    <span class="badge badge-default" style="width: 75px">{{__('No role')}}</span>
+    <span class="badge badge-default">{{__('No role')}}</span>
 @endif
