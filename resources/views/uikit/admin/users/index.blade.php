@@ -42,7 +42,9 @@
                         <td>{{$user->username}}</td>
                         <td>{{$user->email}}</td>
                         <td>
-                            @include('authz::partials.roles_pills', ['role' => $user->role])
+                            @foreach($user->roles as $role)
+                                @include('authz::partials.roles_pills', ['role' => $role])
+                            @endforeach
                         </td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
                         <td>
