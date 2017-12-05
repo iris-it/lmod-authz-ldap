@@ -94,7 +94,7 @@ class ImportAndMapLdapGroups extends Command
 
             }
 
-            if($is_admin){
+            if ($is_admin) {
                 $role = Role::findOrFail(1);
                 $eloquent_user->roles()->save($role);
             }
