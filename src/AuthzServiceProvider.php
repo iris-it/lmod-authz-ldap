@@ -5,6 +5,7 @@ namespace Irisit\AuthzLdap;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Irisit\AuthzLdap\Console\Commands\ParsePermissions;
+use Irisit\AuthzLdap\Console\Commands\ReplaceAllPasswords;
 use Irisit\AuthzLdap\Console\Commands\SetUserAsAdmin;
 use Irisit\AuthzLdap\Console\Commands\ImportAndMapLdapGroups;
 use Irisit\AuthzLdap\Http\Validators\HashValidator;
@@ -56,7 +57,7 @@ class AuthzServiceProvider extends ServiceProvider
 
         $this->app->alias('Html', 'Collective\Html\HtmlFacade');
 
-        $this->commands([ParsePermissions::class, ImportAndMapLdapGroups::class, SetUserAsAdmin::class]);
+        $this->commands([ParsePermissions::class, ImportAndMapLdapGroups::class, SetUserAsAdmin::class, ReplaceAllPasswords::class]);
     }
 
     private function bootValidator()
