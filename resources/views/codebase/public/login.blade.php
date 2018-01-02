@@ -21,7 +21,7 @@
     <div class="form-group row {{ ($errors->has('password')) ? 'is-invalid' : '' }}">
         <div class="col-12">
             <div class="form-material floating">
-                {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                {!! Form::password('password', ['class' => 'form-control']) !!}
                 {!! Form::label('password', __('Password')) !!}
             </div>
             @if ($errors->has('password'))
