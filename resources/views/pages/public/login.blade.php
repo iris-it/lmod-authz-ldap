@@ -21,7 +21,7 @@
     </div>
 
     <div>
-        <div class="form-group form-group-default {{(!$errors->has('email') ?: 'has-error')}}">
+        <div class="form-group form-group-default {{(!$errors->has('password') ?: 'has-error')}}">
             {!! Form::label('password', __('Password')) !!}
             <div class="controls">
                 {!! Form::password('password', ['placeholder' => __('Password'), 'class' =>($errors->has('password') ? 'form-control error' : 'form-control')]) !!}
