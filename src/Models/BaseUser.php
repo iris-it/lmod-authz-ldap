@@ -4,11 +4,10 @@ namespace Irisit\AuthzLdap\Models;
 
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 class BaseUser extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -71,14 +70,17 @@ class BaseUser extends Model implements AuthenticatableContract, AuthorizableCon
     public function hasPermission($name)
     {
         if (is_string($name)) {
-            foreach ($this->role->permissions as $permission) {
-                if ($permission->name == $name) {
-                    return true;
+            foreach ($this->roles as $role) {
+                foreach ($role->permissions as $permission) {
+                    if ($permission->name == $name) {
+                        return true;
+                    }
                 }
             }
         }
 
         return false;
     }
+
 
 }
