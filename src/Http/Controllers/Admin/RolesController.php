@@ -16,7 +16,14 @@ class RolesController extends Controller
 
     public function index()
     {
-        $roles = Role::paginate(10);
+
+        $roles = null;
+
+        if (config('irisit_authz.pagination_enabled')) {
+            $roles = Role::paginate(10);
+        }else{
+            $roles = Role::all(10);
+        }
 
         return view('authz::admin.roles.index')->with(compact('roles'));
     }

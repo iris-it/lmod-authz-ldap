@@ -68,6 +68,17 @@ return [
     |
     */
 
-    'ldap_filters' => '(&(cn=*))'
+    'ldap_filters' => '(&(cn=*))',
+
+        /*
+    |--------------------------------------------------------------------------
+    | Paginate ?
+    |--------------------------------------------------------------------------
+    |
+    | Disable pagination for specific uses cases
+    |
+    */
+
+    'pagination_enabled' => true
 
 ];

@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Support\Facades\Artisan;
 use Irisit\AuthzLdap\Http\Requests\Admin\AdminUserRoleRequest;
 use Irisit\AuthzLdap\Models\Role;
-
 use Irisit\AuthzLdap\Notifications\NewAccount;
 use Irisit\AuthzLdap\Services\PasswordGenService;
 use Laracasts\Flash\Flash;
@@ -18,7 +17,14 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::paginate(5);
+
+        $users = null;
+
+        if (config('irisit_authz.pagination_enabled')) {
+            $users = User::paginate(5);
+        }else{
+            $users = User::all(5);
+        }
 
         return view('authz::admin.users.index')->with(compact('users'));
     }
