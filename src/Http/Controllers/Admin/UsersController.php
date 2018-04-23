@@ -23,7 +23,7 @@ class UsersController extends Controller
         if (config('irisit_authz.pagination_enabled')) {
             $users = User::paginate(5);
         }else{
-            $users = User::all(5);
+            $users = User::all();
         }
 
         return view('authz::admin.users.index')->with(compact('users'));

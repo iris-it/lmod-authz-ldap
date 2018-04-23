@@ -21,7 +21,7 @@ class PermissionsController extends Controller
         if(config('irisit_authz.pagination_enabled')){
             $permissions = Permission::paginate(10);
         }else{
-            $permissions = Permission::all(10);
+            $permissions = Permission::all();
         }
 
         return view('authz::admin.permissions.index')->with(compact('permissions'));
