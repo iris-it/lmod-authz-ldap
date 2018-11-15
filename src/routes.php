@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'Irisit\AuthzLdap\Http\Controllers', 'middleware' => 'web'], function () {
+Route::group(['namespace' => 'Irisit\AuthzLdap\Http\Controllers', 'middleware' => config('irisit_authz.guest_route_middleware')], function () {
 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
@@ -15,7 +15,7 @@ Route::group(['namespace' => 'Irisit\AuthzLdap\Http\Controllers', 'middleware' =
 
     });
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:' . config('irisit_authz.admin_allowed_roles')]], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => config('irisit_authz.auth_route_middleware')], function () {
 
         Route::group(['prefix' => 'users'], function () {
 

@@ -39,17 +39,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Allowed roles for admin section
-    |--------------------------------------------------------------------------
-    |
-    | Roles for admin section, separated by commas
-    |
-    */
-
-    'admin_allowed_roles' => 'admin,manager',
-
-    /*
-    |--------------------------------------------------------------------------
     | Load routes ?
     |--------------------------------------------------------------------------
     |
@@ -70,7 +59,7 @@ return [
 
     'ldap_filters' => '(&(cn=*))',
 
-        /*
+    /*
     |--------------------------------------------------------------------------
     | Paginate ?
     |--------------------------------------------------------------------------
@@ -79,6 +68,20 @@ return [
     |
     */
 
-    'pagination_enabled' => true
+    'pagination_enabled' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Default Middleware for auth and guest routes
+    | Roles for admin section, separated by commas
+    |
+    */
+
+    'guest_route_middleware' => 'web',
+
+    'auth_route_middleware' => ['auth', 'role:admin,manager']
 
 ];
