@@ -69,37 +69,46 @@ class ImportAndMapLdapGroups extends Command
 
     public function getLdapGroups()
     {
-        $users = $this->adldap->search()->rawFilter(config('irisit_authz.ldap_filters'))->get();
+       $users = $this->adldap->search()->rawFilter(config('irisit_authz.ldap_filters'))->get();
 
         foreach ($users as $user) {
 
             // Local instance of the user
             $eloquent_user = User::where('username', $user->getAccountName())->first();
 
-            // Ldap Groups
-            $groups = $user->getGroups();
+            if($eloquent_user) {
 
-            $is_admin = $eloquent_user->hasRole('admin');
+                // Ldap Groups
+                $groups = $user->getGroups();
 
-            // Cleanup
-            $eloquent_user->roles()->detach();
+                $is_admin = $eloquent_user->hasRole('admin');
 
-            foreach ($groups as $group) {
+                // Cleanup
+                $eloquent_user->roles()->detach();
 
-                $role = Role::firstOrCreate([
-                    'name' => $group->getCommonName()
-                ]);
+                foreach ($groups as $group) {
 
-                $eloquent_user->roles()->save($role);
+                    $role = Role::firstOrCreate([
+                        'name' => $group->getCommonName()
+                    ]);
 
+                    $eloquent_user->roles()->save($role);
+
+                }
+
+                if ($is_admin) {
+                    $role = Role::findOrFail(1);
+                    $eloquent_user->roles()->save($role);
+                }
+
+                $this->displayLdapGroups($eloquent_user->username, $groups);
+
+            } else {
+                
+             $this->climate->lightRed($user->getAccountName(). ' Not synchronized')->br();
+                
             }
-
-            if ($is_admin) {
-                $role = Role::findOrFail(1);
-                $eloquent_user->roles()->save($role);
-            }
-
-            $this->displayLdapGroups($eloquent_user->username, $groups);
+            
         }
     }
 
